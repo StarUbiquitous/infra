@@ -1,9 +1,9 @@
 locals {
-  common_topics = ["actions", "github-actions", "go",]
-  repos         = [
+  common_topics = ["actions", "github-actions", "go", ]
+  repos = [
     {
-      name: "infra",
-      description: "Infrastructure for GitHub Actions",
+      name : "infra",
+      description : "Infrastructure for GitHub Actions",
       templated : false
     },
     {
@@ -28,7 +28,7 @@ locals {
     },
     {
       name : "kubectl",
-      description: "GitHub Action for interacting with kubectl (k8s)",
+      description : "GitHub Action for interacting with kubectl (k8s)",
       templated : false
     },
     {
@@ -51,7 +51,7 @@ locals {
 
 
 module "repos" {
-  source   = "../modules/actions-repo"
+  source = "../modules/actions-repo"
   for_each = {
     for repo in local.repos : repo.name => {
       description : repo.description,
