@@ -6,16 +6,16 @@ locals {
       description: "Infrastructure for GitHub Actions",
       templated : false
     },
-#    {
-#      name : "alarm",
-#      description : "This tool collects the delivered content and sends it to other platforms.",
-#      templated : false
-#    },
-#    {
-#      name : "node",
-#      description : "🐳 StarUbiquitous Infrastructure - Node",
-#      templated : false
-#    },
+    {
+      name : "alarm",
+      description : "This tool collects the delivered content and sends it to other platforms.",
+      templated : false
+    },
+    {
+      name : "node",
+      description : "🐳 StarUbiquitous Infrastructure - Node",
+      templated : false
+    },
   ]
 }
 
