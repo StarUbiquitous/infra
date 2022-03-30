@@ -25,20 +25,20 @@ locals {
   ]
   repos = data.terraform_remote_state.repos.outputs.repos
   repo_labels = {
-  for o in flatten([
-    for repo in local.repos :
-    [
-      for label in local.labels :
-      {
-        # repo is of form org/repo_name, we require just repo_name
-        repo : split("/", repo)[1],
-        name : label.name,
-        color : label.color,
-        description : label.description
-      }
-    ]
-  ]) :
-  "${o.repo}/${o.name}" => o
+    for o in flatten([
+      for repo in local.repos :
+      [
+        for label in local.labels :
+        {
+          # repo is of form org/repo_name, we require just repo_name
+          repo : split("/", repo)[1],
+          name : label.name,
+          color : label.color,
+          description : label.description
+        }
+      ]
+    ]) :
+    "${o.repo}/${o.name}" => o
   }
 }
 
