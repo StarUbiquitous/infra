@@ -18,6 +18,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.IAC_TOKEN }}
   TENCENTCLOUD_SECRET_ID: ${{ secrets.TENCENTCLOUD_SECRET_ID }}
   TENCENTCLOUD_SECRET_KEY: ${{ secrets.TENCENTCLOUD_SECRET_KEY }}
+  TF_VAR_ACTIONS_BOT_TOKEN: ${{ secrets.ACTIONS_BOT_TOKEN }}
 
 defaults:
   run:
@@ -31,7 +32,7 @@ jobs:
 
     strategy:
       matrix:
-        folder: ['github/repos', 'github/labels']
+        folder: ['github/repos', 'github/labels', 'github/actions']
 
     steps:
       - name: Checkout
