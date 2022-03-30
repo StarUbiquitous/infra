@@ -22,13 +22,17 @@ env:
 defaults:
   run:
     shell: bash
-    working-directory: github/repos
 
 jobs:
   terraform:
     name: Terraform
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
+
+    strategy:
+      matrix:
+        folder: ['github/repos', 'github/labels']
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -39,20 +43,20 @@ jobs:
 
       - name: Terraform fmt
         id: fmt
-        run: terraform fmt
+        run: terraform -chdir=${{ matrix.folder }} fmt
         continue-on-error: true
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: terraform -chdir=${{ matrix.folder }} init
 
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color
+        run: terraform -chdir=${{ matrix.folder }} validate -no-color
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -var="github_token=${{ secrets.IAC_TOKEN }}" -no-color
+        run: terraform -chdir=${{ matrix.folder }} plan -no-color
         continue-on-error: true
 
       - name: Update Pull Request
@@ -90,4 +94,4 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         id: apply
-        run: terraform apply -var="github_token=${{ secrets.IAC_TOKEN }}" -auto-approve -no-color
+        run: terraform -chdir=${{ matrix.folder }} apply -auto-approve -no-color
