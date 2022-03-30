@@ -16,6 +16,36 @@ locals {
       description : "🐳 StarUbiquitous Infrastructure - Node",
       templated : false
     },
+    {
+      name : "php",
+      description : "🐳 StarUbiquitous Infrastructure - Node",
+      templated : false
+    },
+    {
+      name : "python-alpine",
+      description : "🐳 Python image with pandas based on Alpine platform",
+      templated : false
+    },
+    {
+      name : "kubectl",
+      description: "GitHub Action for interacting with kubectl (k8s)",
+      templated : false
+    },
+    {
+      name : "github-runner",
+      description : "github-runner dockerfile",
+      templated : false
+    },
+    {
+      name : "kubectl-argo-rollouts",
+      description : "GitHub Action for interacting with kubectl-argo-rollouts (k8s)",
+      templated : false
+    },
+    {
+      name : "laravel-env",
+      description : "laravel-env",
+      templated : false
+    }
   ]
 }
 
