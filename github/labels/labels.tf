@@ -22,6 +22,11 @@ locals {
       color : "D2DAE1",
       description : "Best effort: those are nice to have / minor issues."
     },
+    {
+      name : "type/dependencies",
+      color : "0075ca",
+      description : "Dependencies."
+    }
   ]
   repos = data.terraform_remote_state.repos.outputs.repos
   repo_labels = {
