@@ -1,38 +1,37 @@
-name: GitHub Lint
+name: GitHub Lint / Repos
 
 on:
   push:
     branches:
       - 'main'
     paths:
-      - '.github/workflows/github.yml'
-      - 'github/**.tf'
-      - 'github/**.lock.hcl'
+      - '.github/workflows/github-repos.yaml'
+      - 'github/repos/**.tf'
+      - 'github/repos/**.lock.hcl'
   pull_request:
     paths:
-      - '.github/workflows/github.yml'
-      - 'github/**.tf'
-      - 'github/**.lock.hcl'
+      - '.github/workflows/github-repos.yaml'
+      - 'github/repos/**.tf'
+      - 'github/repos/**.lock.hcl'
   workflow_dispatch:
+
 env:
   GITHUB_TOKEN: ${{ secrets.IAC_TOKEN }}
   TENCENTCLOUD_SECRET_ID: ${{ secrets.TENCENTCLOUD_SECRET_ID }}
   TENCENTCLOUD_SECRET_KEY: ${{ secrets.TENCENTCLOUD_SECRET_KEY }}
+  TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform.d/plugin-cache
   TF_VAR_ACTIONS_BOT_TOKEN: ${{ secrets.ACTIONS_BOT_TOKEN }}
 
 defaults:
   run:
     shell: bash
+    working-directory: github/repos
 
 jobs:
   terraform:
     name: Terraform
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-
-    strategy:
-      matrix:
-        folder: ['github/repos', 'github/labels', 'github/actions']
+    timeout-minutes: 5
 
     steps:
       - name: Checkout
@@ -42,22 +41,31 @@ jobs:
         with:
           terraform_version: ~1.0
 
+      - name: Create Terraform Plugin Cache Dir
+        run: mkdir --parents $TF_PLUGIN_CACHE_DIR
+
+      - name: Cache Terraform dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
+
       - name: Terraform fmt
         id: fmt
-        run: terraform -chdir=${{ matrix.folder }} fmt
+        run: terraform fmt
         continue-on-error: true
 
       - name: Terraform Init
         id: init
-        run: terraform -chdir=${{ matrix.folder }} init
+        run: terraform init -input=false
 
       - name: Terraform Validate
         id: validate
-        run: terraform -chdir=${{ matrix.folder }} validate -no-color
+        run: terraform validate -no-color
 
       - name: Terraform Plan
         id: plan
-        run: terraform -chdir=${{ matrix.folder }} plan -no-color
+        run: terraform plan -no-color -input=false
         continue-on-error: true
 
       - name: Update Pull Request
@@ -95,4 +103,4 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         id: apply
-        run: terraform -chdir=${{ matrix.folder }} apply -auto-approve -no-color
+        run: terraform apply -auto-approve -no-color -input=false
