@@ -4,47 +4,38 @@ locals {
     {
       name : "infra",
       description : "Infrastructure for GitHub Actions",
-      templated : false
     },
     {
       name : "alarm",
       description : "This tool collects the delivered content and sends it to other platforms.",
-      templated : false
     },
     {
       name : "node",
       description : "🐳 StarUbiquitous Infrastructure - Node",
-      templated : false
     },
     {
       name : "php",
       description : "🐳 StarUbiquitous Infrastructure - Node",
-      templated : false
     },
     {
       name : "python-alpine",
       description : "🐳 Python image with pandas based on Alpine platform",
-      templated : false
     },
     {
       name : "kubectl",
       description : "GitHub Action for interacting with kubectl (k8s)",
-      templated : false
     },
     {
       name : "github-runner",
       description : "github-runner dockerfile",
-      templated : false
     },
     {
       name : "kubectl-argo-rollouts",
       description : "GitHub Action for interacting with kubectl-argo-rollouts (k8s)",
-      templated : false
     },
     {
       name : "laravel-env",
       description : "laravel-env",
-      templated : false
     }
   ]
 }
@@ -57,7 +48,7 @@ module "repos" {
       description : repo.description,
       visibility : can(repo.visibility) ? repo.visibility : "public",
       # by default use templated repos,if not set to false
-      templated : can(repo.templated) ? repo.templated : true
+      templated : can(repo.templated) ? repo.templated : false
       # create secrets if set
       secrets : can(repo.secrets) ? repo.secrets : {}
       # create status_checks if set
@@ -74,6 +65,12 @@ module "repos" {
       topics : can(repo.topics) ? repo.topics : null
       # has_downloads
       has_downloads : can(repo.has_downloads) ? repo.has_downloads : false
+      # allows_deletions
+      allows_deletions : can(repo.allows_deletions) ? repo.allows_deletions : false
+      # allows_force_pushes
+      allows_force_pushes : can(repo.allows_force_pushes) ? repo.allows_force_pushes : false
+      # push_restrictions
+      push_restrictions : can(repo.push_restrictions) ? repo.push_restrictions : []
     }
   }
   gh_org                     = var.organization
@@ -87,4 +84,9 @@ module "repos" {
   delete_branch_on_merge     = each.value.delete_branch_on_merge
   topics                     = each.value.topics
   has_downloads              = each.value.has_downloads
+  push_restrictions          = each.value.push_restrictions
+  allows_deletions           = each.value.allows_deletions
+  allows_force_pushes        = each.value.allows_force_pushes
+
+  template_repo_name = each.value.templated ? "laravel-startup" : ""
 }
