@@ -36,6 +36,10 @@ locals {
     {
       name : "laravel-env",
       description : "laravel-env",
+    },
+    {
+      name: "terraform-module-github-repos",
+      description : "Terraform module which creates GitHub repository for each repository in the list",
     }
   ]
 }
