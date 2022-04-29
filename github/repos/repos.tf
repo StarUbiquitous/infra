@@ -38,7 +38,7 @@ locals {
       description : "laravel-env",
     },
     {
-      name: "terraform-module-github-repos",
+      name : "terraform-module-github-repos",
       description : "Terraform module which creates GitHub repository for each repository in the list",
     }
   ]
@@ -46,7 +46,7 @@ locals {
 
 
 module "repos" {
-  source = "../modules/actions-repo"
+  source = "StarUbiquitous/github-repos/module"
   for_each = {
     for repo in local.repos : repo.name => {
       description : repo.description,
