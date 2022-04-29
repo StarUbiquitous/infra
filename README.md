@@ -17,10 +17,11 @@ This repository support setup:
 ## CI/CD
 
 ### GitHub
+This will setup [StarUbiquitous](https://github.com/StarUbiquitous) on GitHub.
 
- Infrastructure | Lint
-----------------|------
- Action | 🚧 Work in Progress
- Branch | 🚧 Work in Progress
- Repository | 🚧 Work in Progress
- Team | 🚧 Work in Progress
+| Infrastructure | Lint                                                                                                                                                                                               |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action Secrets | [![GitHub Lint / Actions](https://github.com/StarUbiquitous/infra/actions/workflows/github-actions.yaml/badge.svg)](https://github.com/StarUbiquitous/infra/actions/workflows/github-actions.yaml) |
+| Labels         | [![GitHub Lint / Labels](https://github.com/StarUbiquitous/infra/actions/workflows/github-labels.yaml/badge.svg)](https://github.com/StarUbiquitous/infra/actions/workflows/github-labels.yaml)    |
+| Branch         | [![GitHub Lint / Repos](https://github.com/StarUbiquitous/infra/actions/workflows/github-repos.yaml/badge.svg)](https://github.com/StarUbiquitous/infra/actions/workflows/github-repos.yaml)       |
+| Repository     | [![GitHub Lint / Repos](https://github.com/StarUbiquitous/infra/actions/workflows/github-repos.yaml/badge.svg)](https://github.com/StarUbiquitous/infra/actions/workflows/github-repos.yaml)       |
