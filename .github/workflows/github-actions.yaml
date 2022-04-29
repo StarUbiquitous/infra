@@ -13,6 +13,8 @@ on:
       - '.github/workflows/github-actions.yaml'
       - 'github/actions/**.tf'
       - 'github/actions/**.lock.hcl'
+  schedule:
+    - cron: "0 4 * * *" # UTC time
   workflow_dispatch:
 
 env:

@@ -13,6 +13,8 @@ on:
       - '.github/workflows/github-labels.yaml'
       - 'github/labels/**.tf'
       - 'github/labels/**.lock.hcl'
+  schedule:
+    - cron: "30 4 * * *" # UTC time
   workflow_dispatch:
 
 env:
