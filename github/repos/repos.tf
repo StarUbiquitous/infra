@@ -40,7 +40,15 @@ locals {
     {
       name : "terraform-module-github-repos",
       description : "Terraform module which creates GitHub repository for each repository in the list",
-    }
+    },
+    {
+      name : "terraform-module-tencentcloud-cos",
+      description : "Terraform module which creates tencentcloud cos bucket for each bucket in the list",
+    },
+    {
+      name : "terraform-module-tencentcloud-cdn",
+      description : "Terraform module which creates tencentcloud cdn bucket for each domain in the list",
+    },
   ]
 }
 
