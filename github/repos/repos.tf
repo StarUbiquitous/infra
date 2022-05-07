@@ -49,6 +49,10 @@ locals {
       name : "terraform-module-tencentcloud-cdn",
       description : "Terraform module which creates tencentcloud cdn bucket for each domain in the list",
     },
+    {
+      name : "terraform-module-tencentcloud-ssl",
+      description : "Terraform module which creates tencentcloud ssl bucket for each domain in the list",
+    },
   ]
 }
 
