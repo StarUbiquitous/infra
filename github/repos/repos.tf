@@ -53,6 +53,10 @@ locals {
       name : "terraform-module-tencentcloud-ssl",
       description : "Terraform module which creates tencentcloud ssl bucket for each domain in the list",
     },
+    {
+      name : "terraform-alicloud-dns",
+      description : "Terraform module which creates alicloud dns for each domain in the list",
+    },
   ]
 }
 
