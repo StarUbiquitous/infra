@@ -57,6 +57,10 @@ locals {
       name : "terraform-alicloud-dns",
       description : "Terraform module which creates alicloud dns for each domain in the list",
     },
+    {
+      name : "starfire-bot",
+      description : "Deployment bot",
+    },
   ]
 }
 
