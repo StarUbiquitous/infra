@@ -84,9 +84,9 @@ module "repos" {
       # allows_deletions
       allows_deletions : can(repo.allows_deletions) ? repo.allows_deletions : false
       # allows_force_pushes
-      allows_force_pushes : can(repo.allows_force_pushes) ? repo.allows_force_pushes : false
+      allows_force_pushes : can(repo.allows_force_pushes) ? repo.allows_force_pushes : true
       # push_restrictions
-      push_restrictions : can(repo.push_restrictions) ? repo.push_restrictions : []
+      push_restrictions : can(repo.push_restrictions) ? repo.push_restrictions : [ data.terraform_remote_state.teams.outputs.teams.maintainers.node_id ]
     }
   }
   gh_org                     = var.organization
