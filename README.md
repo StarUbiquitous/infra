@@ -9,10 +9,10 @@ This repository support setup:
 
 
 - GitHub
-  - 🚧 Action
-  - 🚧 Branch
-  - 🚧 Repository
-  - 🚧 Team
+  - Action
+  - Branch
+  - Repository
+  - Team
 
 ## CI/CD
 
@@ -25,3 +25,4 @@ This will setup [StarUbiquitous](https://github.com/StarUbiquitous) on GitHub.
 | Labels         | [![GitHub Lint / Labels](https://github.com/StarUbiquitous/infra/actions/workflows/github-labels.yaml/badge.svg)](https://github.com/StarUbiquitous/infra/actions/workflows/github-labels.yaml)    |
 | Branch         | [![GitHub Lint / Repos](https://github.com/StarUbiquitous/infra/actions/workflows/github-repos.yaml/badge.svg)](https://github.com/StarUbiquitous/infra/actions/workflows/github-repos.yaml)       |
 | Repository     | [![GitHub Lint / Repos](https://github.com/StarUbiquitous/infra/actions/workflows/github-repos.yaml/badge.svg)](https://github.com/StarUbiquitous/infra/actions/workflows/github-repos.yaml)       |
+| Team           | [![GitHub Lint / Repos](https://github.com/StarUbiquitous/infra/actions/workflows/github-teams.yaml/badge.svg)](https://github.com/StarUbiquitous/infra/actions/workflows/github-team.yaml)        |
